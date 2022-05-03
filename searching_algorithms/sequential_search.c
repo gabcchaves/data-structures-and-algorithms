@@ -1,5 +1,6 @@
 // Sequential searching algorithm
 #include <stdio.h>
+#include "util.h"
 
 // Implementation
 int search(int * array, int arrayLength, int element) {
@@ -10,9 +11,6 @@ int search(int * array, int arrayLength, int element) {
 	}
 	return -1;
 }
-
-// Print the array
-void printArray( int * , int );
 
 void main() {
 	int array[] = {1, 32, 43, 21, 2, 4, 7};	
@@ -26,12 +24,4 @@ void main() {
 	} else {
 		printf("Elemento não encontrado.\n");
 	}
-}
-
-void printArray( int * array, int arrayLength ) {
-	printf("[ ");
-	for ( int i = 0; i < arrayLength; i++ ) {
-		printf("%d ", array[i]);
-	}
-	printf("]\n");
 }
