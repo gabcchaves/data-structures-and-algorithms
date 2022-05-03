@@ -11,14 +11,27 @@ int search(int * array, int arrayLength, int element) {
 	return -1;
 }
 
+// Print the array
+void printArray( int * , int );
+
 void main() {
 	int array[] = {1, 32, 43, 21, 2, 4, 7};	
+	int element = 21;
 	size_t arrayLength = sizeof(array) / sizeof(array[0]);
 	
-	int index = search(array, arrayLength, 7);
+	int index = search(array, arrayLength, element);
 	if ( index != -1 ) {
-		printf("Elemento na posição %d.\n", index);
+		printf("%d está na posição %d.\n", element, index);
+		printArray(array, arrayLength);
 	} else {
 		printf("Elemento não encontrado.\n");
 	}
+}
+
+void printArray( int * array, int arrayLength ) {
+	printf("[ ");
+	for ( int i = 0; i < arrayLength; i++ ) {
+		printf("%d ", array[i]);
+	}
+	printf("]\n");
 }
