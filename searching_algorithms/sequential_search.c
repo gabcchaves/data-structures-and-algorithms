@@ -1,6 +1,6 @@
 // Sequential searching algorithm
 #include <stdio.h>
-#include "util.h"
+#include "../util/util.h"
 
 // Implementation
 int search(int * array, int arrayLength, int element) {

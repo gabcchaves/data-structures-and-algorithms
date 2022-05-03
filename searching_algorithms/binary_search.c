@@ -1,5 +1,6 @@
 // Binary searching algorithm
 #include <stdio.h>
+#include "../util/util.h"
 
 // Implementation
 int binarySearch( int * array, int arrayLength, int element ) {
@@ -27,9 +28,6 @@ int binarySearch( int * array, int arrayLength, int element ) {
 	return -1;
 }
 
-// Print the array
-void printArray( int * , int );
-
 void main() {	
 	// Binary search is designed for sorted DS
 	int array[] = { 1, 2, 10, 17, 34, 47, 59 };
@@ -44,12 +42,4 @@ void main() {
 	} else {
 		printf("Elemento não encontrado.\n");
 	}
-}
-
-void printArray( int * array, int arrayLength ) {
-	printf("[ ");
-	for ( int i = 0; i < arrayLength; i++ ) {
-		printf("%d ", array[i]);
-	}
-	printf("]\n");
 }
