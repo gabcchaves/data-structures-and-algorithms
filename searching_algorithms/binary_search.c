@@ -31,8 +31,9 @@ int binarySearch( int * array, int arrayLength, int element ) {
 void printArray( int * , int );
 
 void main() {	
-	int array[] = {1, 32, 43, 12, 33, 5, 8};
-	int element = 33;
+	// Binary search is designed for sorted DS
+	int array[] = { 1, 2, 10, 17, 34, 47, 59 };
+	int element = 34;
 	size_t arrayLength = sizeof(array) / sizeof(array[0]);
 
 	int index = binarySearch( array, arrayLength, element );
