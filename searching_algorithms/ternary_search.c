@@ -23,7 +23,7 @@ int ternary(int * array, int size, int target) {
 			lo = mid1 + 1;
 			hi = mid2 - 1;
 		}
-	} while (lo != hi || array[lo] != array[hi]);
+	} while (lo != hi && array[lo] != array[hi]);
 
 	return -1; // Not found
 }
