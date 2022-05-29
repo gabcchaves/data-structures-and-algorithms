@@ -1,0 +1,29 @@
+/* Program to find the highest prime number in an array
+ * using linear search */
+
+#include <stdio.h>
+
+int find(int array[], int size, int target) {
+	for (int i = 0; i < size; i++) {
+		if (array[i] == target)
+			return i;
+	}
+	return -1;
+}
+
+int main() {
+	int array[] = {1, 20, 40, 2, 10, 4, 2, 3, 4, 7, 32};	
+	size_t size = sizeof(array) / sizeof(array[0]);
+	int target = 4;
+
+	int pos = find(array, size, target);
+
+	printf("[ ");
+	for (int i = 0; i < size; i++) {
+		printf("%d ", array[i]);
+	}
+	printf("]");
+
+	printf("\n%d está na posição %d.\n", target, pos);
+	return 0;
+}
