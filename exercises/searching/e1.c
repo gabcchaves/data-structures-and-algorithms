@@ -24,6 +24,10 @@ int main() {
 	}
 	printf("]");
 
-	printf("\n%d está na posição %d.\n", target, pos);
+	if (pos != 1)
+		printf("\n%d está na posição %d.\n", target, pos);
+	else
+		printf("\n%d não está na lista.\n", target);
+
 	return 0;
 }
