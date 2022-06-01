@@ -38,6 +38,7 @@ void merge(int array[], int lb, int mid, int ub) {
 
 void sort(int array[], int lb, int ub) {
 	if (lb < ub) {
+		printArray(array, ub - lb + 1);
 		int mid = lb + (ub - lb) / 2;
 
 		sort(array, lb, mid);
@@ -55,7 +56,8 @@ void printArray(int array[], int size) {
 }
 
 int main() {
-	int array[] = {12, 44, 13, 88, 23, 94, 11, 39, 20, 16, 5, 33, 42};
+	//int array[] = {12, 44, 13, 88, 23, 94, 11, 39, 20, 16, 5, 33, 42};
+	int array[] = {6, 5, 12, 10, 9, 1};
 	int size = sizeof(array) / sizeof(array[0]);
 
 	printArray(array, size);
