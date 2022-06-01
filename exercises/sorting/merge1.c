@@ -2,6 +2,15 @@
 // Print each step
 #include <stdio.h>
 
+// Utility
+void printArray(int array[], int size) {
+	printf("[ ");
+	for (int i = 0; i < size; i++)
+		printf("%d ", array[i]);
+	printf("]\n");
+}
+
+// Merge subarrays
 void merge(int array[], int lb, int mid, int ub) {
 	int s1 = mid - lb + 1;
 	int s2 = ub - mid;
@@ -36,25 +45,25 @@ void merge(int array[], int lb, int mid, int ub) {
 	}
 }
 
+// Sorts
 void sort(int array[], int lb, int ub) {
+	char half = 0;
 	if (lb < ub) {
-		printArray(array, ub - lb + 1);
+		if (!half)
+			printArray(array, ub - lb + 1);
+
 		int mid = lb + (ub - lb) / 2;
 
 		sort(array, lb, mid);
+		half = 1;
 		sort(array, mid + 1, ub);
+		printArray(array, ub - lb + 1);
 
 		merge(array, lb, mid, ub);
 	}
 }
 
-void printArray(int array[], int size) {
-	printf("[ ");
-	for (int i = 0; i < size; i++)
-		printf("%d ", array[i]);
-	printf("]\n");
-}
-
+// Driver
 int main() {
 	//int array[] = {12, 44, 13, 88, 23, 94, 11, 39, 20, 16, 5, 33, 42};
 	int array[] = {6, 5, 12, 10, 9, 1};
