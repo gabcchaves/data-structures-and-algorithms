@@ -32,7 +32,7 @@ int binSearch(int array[], int start, int end, int key) {
 		int mid = start + (end - start) / 2;
 		if (array[mid] == key) return mid;
 		if (array[mid] > key) binSearch(array, start, mid - 1, key);
-		if (array[mid] < key) binSearch(array, mid + 1, end);
+		if (array[mid] < key) binSearch(array, mid + 1, end, key);
 	}
 	return -1;
 }
