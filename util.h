@@ -1,0 +1,11 @@
+#ifndef util
+#define util
+
+void printArray(int array[], int size) {
+	printf("[ ");
+	for (int i = 0; i < size; i++)
+		printf("%d ", array[i]);
+	printf("]\n");
+}
+
+#endif
