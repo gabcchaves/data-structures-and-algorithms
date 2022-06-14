@@ -29,10 +29,11 @@ void sortedFill(int array[], int size) {
 // Binary search
 int binSearch(int array[], int start, int end, int key) {
 	if (start <= end) {
-		int mid = start + (end - start) / 2;
+		int mid = (start + (end - start) / 2);
 		if (array[mid] == key) return mid;
-		if (array[mid] > key) binSearch(array, start, mid - 1, key);
-		if (array[mid] < key) binSearch(array, mid + 1, end, key);
+		if (array[mid] > key)
+			binSearch(array, start, mid - 1, key);
+		binSearch(array, mid + 1, end, key);
 	}
 	return -1;
 }
