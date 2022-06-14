@@ -16,11 +16,10 @@ int find(int array[], int start, int end, int key) {
 }
 
 int main() {
-	int array[9];
+	int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int size = sizeof(array) / sizeof(array[0]);
-	unsortedFill(array, size);
 
-	int i = find(array, 0, size - 1, 10);
+	int i = find(array, 0, size - 1, 5);
 	printArray(array, size);
 	printf("%d\n", i);
 	return 0;
