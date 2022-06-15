@@ -12,7 +12,7 @@ void merge(int array[], int l, int m, int r) {
 	for (int i = 0; i < s2; i++)
 		l2[i] = array[m + 1 + i];
 
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = l;
 	while (i < s1 && j < s2) {
 		if (l1[i] <= l2[j]) {
 			array[k] = l1[i];

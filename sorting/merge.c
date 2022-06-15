@@ -15,7 +15,7 @@ void merge(int array[], int left, int mid, int right) {
 	for (int i = 0; i < s2; i++)
 		l2[i] = array[mid + 1 + i];
 
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = left;
 	while (i < s1 && j < s2) {
 		if (l1[i] <= l2[j]) {
 			array[k] = l1[i];

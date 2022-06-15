@@ -12,7 +12,7 @@ void merge(int array[], int left, int mid, int right) {
 	for (int i = 0; i < s2; i++)
 		l2[i] = array[mid + 1 + i];
 
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = left;
 	while (i < s1 && j < s2) {
 		if (l1[i] <= l2[j]) {
 			array[k] = l1[i];
@@ -49,11 +49,14 @@ void sort(int array[], int left, int right) {
 }
 
 int main() {
-	unsigned int size;
-	scanf("%u", &size);
-	int array[size];
-	for (unsigned int i = 0; i < size; i++)
-		scanf("%d", &array[i]);
+	// unsigned int size;
+	// scanf("%u", &size);
+	// int array[size];
+	// for (unsigned int i = 0; i < size; i++)
+	// 	scanf("%d", &array[i]);
+	
+	int array[] = {2, 1, 3, 5, 4};
+	int size = sizeof(array) / sizeof(array[0]);
 
 	printArray(array, size);
 	sort(array, 0, size-1);
