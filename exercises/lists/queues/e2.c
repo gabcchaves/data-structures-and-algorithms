@@ -14,6 +14,7 @@ Queue* initQueue(unsigned capacity) {
 	queue->size = 0;
 	queue->rear = capacity - 1;
 	queue->array = (int*) malloc(queue->capacity * sizeof(int));
+	return queue;
 }
 
 char isFull(Queue* queue) {
