@@ -10,7 +10,7 @@ typedef struct Queue {
 Queue* initQueue(unsigned capacity) {
 	Queue* queue = (Queue*) malloc(sizeof(Queue));
 	queue->capacity = capacity;
-	queue->front;
+	queue->front = 0;
 	queue->size = 0;
 	queue->rear = capacity - 1;
 	queue->array = (int*) malloc(queue->capacity * sizeof(int));
