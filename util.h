@@ -38,4 +38,48 @@ int binSearch(int array[], int start, int end, int key) {
 	return -1;
 }
 
+// Result types for function returns that need to be treated.
+typedef struct ResultInt {
+	unsigned char status;	// If false (0), then it means error.
+	int value;				// The value, which would more likely be read on success.
+} ResultInt;
+
+typedef struct ResultFloat {
+	unsigned char status;	// If false (0), then it means error.
+	float value;			// The value, which would more likely be read on success.
+} ResultFloat;
+
+typedef struct ResultGeneric {
+	unsigned char status;
+	ResultInt value_int;
+	ResultFloat value_float;
+	char is_float;
+} ResultGeneric;
+
+// Parse string number to floating point or to integer.
+void parse(char *str_num, ResultGeneric target) {
+	unsigned short num_seps = 0;
+	for (int i = 0; i < strlen(str_num); i++) {
+		if (!isdigit(str_num[i])) {
+			if (str_num[i] == '.') {
+				num_seps++;
+				if (num_seps > 1) {
+					target.status = 0;
+				}
+			} else {
+				target.status = 0;
+			}
+		}
+	}
+	if (num_seps > 0) {
+		target.status = 1;
+		target.value_float.value = atof(str_num);
+		target.is_float = 1;
+	} else {
+		target.status = 1;
+		target.value_int.value = atoi(str_num);
+		target.is_float = 0;
+	}
+}
+
 #endif
