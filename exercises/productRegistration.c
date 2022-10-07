@@ -1,4 +1,4 @@
-/* Programa para cadastrar, consultar e remover produtos.
+/* Programa para cadastrar e exibir produtos.
  * Exercício para praticar programação modular estrutura
  * de dados. */
 
@@ -73,9 +73,9 @@ Product create_product(char * description, double price, unsigned int quantity) 
 int main() {
 	ProductList products = init_list();
 	add_product(&products, create_product("Pão", 0.1, 2));
-	add_product(&products, create_product("Leite", 0.1, 2));
-	add_product(&products, create_product("Arroz", 0.1, 2));
-	add_product(&products, create_product("Feijão", 0.1, 2));
+	add_product(&products, create_product("Leite", 1, 2));
+	add_product(&products, create_product("Arroz", 1, 2));
+	add_product(&products, create_product("Feijão", 1.5, 2));
 	print_products(&products);
 	return 0;
 }
