@@ -63,6 +63,31 @@ void printList(List *list) {
 	printf("\b");
 }
 
+// Create a new hash table.
+List** newHashTable(size_t length) {
+	List** ht = (List**) malloc(length * sizeof(List*));
+	for (size_t i = 0; i < length; i++) {
+		ht[i] = NULL;
+	}
+	return ht;
+}
+
+// Hash function.
+size_t indexOf(size_t length, unsigned int key) {
+	return key % length;
+}
+
+// Add element to hash table.
+void addToHashTable(List* hash_table[], size_t length, unsigned int key) {
+	size_t i = indexOf(length, key);
+	if (hash_table[i] == NULL) {
+		hash_table[i] = newList(1);
+		addToList(hash_table[i], key);
+	} else {
+		addToList(hash_table[i], key);
+	}
+}
+
 int main() {
 	size_t length = 10;
 	List *list = newList(length);
@@ -74,10 +99,11 @@ int main() {
 	printList(list);
 	printf("\n");
 	
-	rm(list, 20);
+	List** hash_table = newHashTable(length);
 	
-	printList(list);
-	printf("\n");
+	addToHashTable(hash_table, length, 10);
+	
+	printf("%u\n", hash_table[0]->first->data);
 
 	return 0;
 }
