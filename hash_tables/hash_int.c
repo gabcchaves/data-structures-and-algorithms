@@ -88,22 +88,38 @@ void addToHashTable(List* hash_table[], size_t length, unsigned int key) {
 	}
 }
 
+// Print hash table.
+void printHashTable(List* hash_table[], size_t length) {
+	for (size_t i = 0; i < length; i++) {
+		if (hash_table[i] != NULL) {
+			ListNode* curr = hash_table[i]->first;
+			while (curr != NULL) {
+				printf("%u ", curr->data);
+				curr = curr->next;
+			}
+			printf("\n");
+		}
+	}
+}
+
 int main() {
 	size_t length = 10;
-	List *list = newList(length);
-	
-	addToList(list, 10);
-	addToList(list, 20);
-	addToList(list, 30);
-	
-	printList(list);
-	printf("\n");
-	
 	List** hash_table = newHashTable(length);
 	
 	addToHashTable(hash_table, length, 10);
+	addToHashTable(hash_table, length, 20);
+	addToHashTable(hash_table, length, 30);
+	addToHashTable(hash_table, length, 1);
+	addToHashTable(hash_table, length, 11);
+	addToHashTable(hash_table, length, 2);
+	addToHashTable(hash_table, length, 12);
+	addToHashTable(hash_table, length, 3);
+	addToHashTable(hash_table, length, 13);
+	addToHashTable(hash_table, length, 4);
 	
-	printf("%u\n", hash_table[0]->first->data);
+	printf("Hash table:\n");
+	
+	printHashTable(hash_table, length);
 
 	return 0;
 }
