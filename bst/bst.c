@@ -9,88 +9,95 @@ struct Node {
 	Node *right;
 };
 
-void insert(unsigned int key, Node **root) {
-	if ((*root) == NULL) {
-		(*root) = (Node*) calloc(1, sizeof(Node));
-		(*root)->key = key;
-		(*root)->left = NULL;
-		(*root)->right = NULL;
+Node* insert(Node*, unsigned int);
+Node* search(Node*, unsigned int);
+Node* delete(Node*, unsigned int);
+Node* searchMinNode(Node*);
+
+Node* insert(Node *t, unsigned int key) {
+	if (t != NULL) {
+		if (t->key > key)
+			t->left = insert(t->left, key);
+		else if (t->key < key)
+			t->right = insert(t->right, key);
 	} else {
-		if (key < (*root)->key) {
-			if ((*root)->left == NULL) {
-				(*root)->left = (Node*) calloc(1, sizeof(Node));
-				(*root)->left->key = key;
-				(*root)->left->left = NULL;
-				(*root)->left->right = NULL;
-			} else {
-				insert(key, &((*root)->left));
-			}
-		} else if (key > (*root)->key) {
-			if ((*root)->right == NULL) {
-				(*root)->right = (Node*) calloc(1, sizeof(Node));
-				(*root)->right->key = key;
-				(*root)->right->left = NULL;
-				(*root)->right->right = NULL;
-			} else {
-				insert(key, &((*root)->right));
-			}
-		}
+		t = (Node*) calloc(1, sizeof(Node));
+		t->key = key;
+		t->left = NULL;
+		t->right = NULL;
 	}
+	return t;
 }
 
-int search(unsigned int key, Node *root) {
-	int ret = -1;
+Node* search(Node *t, unsigned int key) {
 
-	if (root != NULL) {
-		if (key < root->key) {
-			ret = search(key, root->left);
-		} else if (key > root->key) {
-			ret = search(key, root->right);
+	if (t != NULL && t->key != key)
+		if (t->key > key)
+			t = search(t->left, key);
+		else if (t->key < key)
+			t = search(t->right, key);
+
+	return t;
+}
+
+Node* delete(Node *t, unsigned int key) {
+	Node *ret = NULL;
+
+	if (t->key != key && t != NULL) {
+		t = delete( (t->key > key ? t->left : t->right), key);
+	} else {
+		if (t->left == NULL) {
+			ret = t->right;
+			free(t);
+		} else if (t->right == NULL) {
+			ret = t->left;
+			free(t);
 		} else {
-			ret = root->key;
+			ret = searchMinNode(t->right);
+			ret->left = t->left;
+			if (ret != t->right) ret->right = t->right;
+			free(t);
 		}
 	}
 
 	return ret;
 }
 
-char delete(unsigned int key, Node **root) {
-	if ((*root) == NULL) return -1;
-
-	// Find target.
-	if (key < (*root)->key) {
-		delete(key, (*root)->left);
-	} else if (key > (*root)->key) {
-		delete(key, (*root)->right);
-	} else {
-		if ((*root)->left != NULL && (*root)->right == NULL) {
-			(*root) = (*root)->left;
-		} else if ((*root)->left == NULL && (*root)->right != NULL) {
-			(*root) = (*root)->right;
-		} else if ((*root)->left != NULL && (*root)->right != NULL) {
-			Node *curr = (*root);
-			while (*root != NUll) {
-				if (curr->left != NULL && curr->left && NULL)
-					curr = curr->left;
-			}
-			(*root) = curr->left;
-			curr->left = NULL;
-		} else {
-		}
-	}
+Node* searchMinNode(Node *t) {
+	if (t->left != NULL)
+		t = searchMinNode(t->left);
+	return t;
 }
 
 int main() {
-	Node *root = NULL;
+	Node *tree = NULL;
+	tree = insert(tree, 10);
+	tree = insert(tree, 15);
+	tree = insert(tree, 5);
 
-	insert(10, &root);
-	insert(20, &root);
+	Node *r = search(tree, 5);
+	printf("%d\n", r != NULL ? r->key : -1);
 
-	printf("%d\n", search(10, root));
-	printf("%d\n", search(20, root));
+	r = search(tree, 10);
+	printf("%d\n", r != NULL ? r->key : -1);
 
-	delete(10, &root);
-	printf("%d", search(10, root));
+	r = search(tree, 15);
+	printf("%d\n", r != NULL ? r->key : -1);
+
+
+	printf("\n");
+
+	tree = delete(tree, 10);
+	tree = delete(tree, 15);
+
+	r = search(tree, 10);
+	printf("%d\n", r != NULL ? r->key : -1);
+
+	r = search(tree, 15);
+	printf("%d\n", r != NULL ? r->key : -1);
+
+	r = search(tree, 5);
+	printf("%d\n", r != NULL ? r->key : -1);
 
 	return 0;
 }
